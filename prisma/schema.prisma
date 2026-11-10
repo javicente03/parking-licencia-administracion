@@ -1,0 +1,88 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  OPERATOR
+}
+
+enum LicenseStatus {
+  ACTIVE
+  SUSPENDED
+  REVOKED
+  EXPIRED
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  name      String
+  role      Role      @default(ADMIN)
+  resetPasswordToken   String?
+  resetPasswordExpires DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  logs    AuditLog[]
+
+  @@map("users")
+}
+
+model Client {
+  id           String    @id @default(uuid())
+  name         String
+  taxId        String?   @unique 
+  contactEmail String
+  contactPhone String?
+  address      String?
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  licenses     License[]
+
+  @@map("clients")
+}
+
+model License {
+  id                 String        @id @default(uuid())
+  clientId           String
+  client             Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  
+  hwid               String        
+  plan               String        
+  features           Json          
+  cashBoxes          Json          
+  cashBoxesCount     Int           @default(1)
+  
+  superAdminMail     String?
+  superAdminPassword String?
+  
+  issuedAt           DateTime      @default(now())
+  expiresAt          DateTime
+  status             LicenseStatus @default(ACTIVE)
+  
+  signedToken        String        @db.Text 
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  @@index([hwid])
+  @@index([clientId])
+  @@map("licenses")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  action    String   
+  details   Json?
+  createdAt DateTime @default(now())
+
+  @@map("audit_logs")
+}
