@@ -7,7 +7,7 @@ import {
   updateClient,
   updateClientStatus,
 } from '@/controllers/client.controller';
-import { getLicenses, generateLicense, downloadLicenseFile } from '@/controllers/license.controller';
+import { getLicenses, generateLicense, downloadLicenseFile, revokeLicense } from '@/controllers/license.controller';
 import { authenticateJwt } from '@/middlewares/auth.middleware';
 import { rateLimiter } from '@/middlewares/rateLimiter.middleware';
 import { idempotency } from '@/middlewares/idempotency.middleware';
@@ -41,5 +41,6 @@ router.patch('/clients/:id/status', updateClientStatus);
 router.get('/licenses', getLicenses);
 router.post('/licenses/generate', idempotency(86400), generateLicense);
 router.get('/licenses/:id/download', downloadLicenseFile);
+router.patch('/licenses/:id/revoke', revokeLicense);
 
 export default router;
