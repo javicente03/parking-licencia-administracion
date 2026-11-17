@@ -14,7 +14,7 @@ import { idempotency } from '@/middlewares/idempotency.middleware';
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/raiz', (req, res) => {
   res.json({ message: 'API is running' });
 });
 
