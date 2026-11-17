@@ -14,6 +14,10 @@ import { idempotency } from '@/middlewares/idempotency.middleware';
 
 const router = Router();
 
+router.get('/', (req, res) => {
+  res.json({ message: 'API is running' });
+});
+
 // ==========================================
 // RUTAS PÚBLICAS
 // ==========================================

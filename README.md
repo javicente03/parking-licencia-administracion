@@ -20,18 +20,17 @@ yarn add -D prisma@^5 typescript@5.4.5 tsx @types/node @types/express @types/cor
 # {
 #   "compilerOptions": {
 #     "target": "ES2022",
-#     "module": "Node16",
+#     "module": "node16",
 #     "moduleResolution": "node16",
-#     "rootDir": "./",
+#     "rootDir": "./src",
+#     "outDir": "./dist",
 #     "paths": {
 #       "@/*": ["./src/*"]
 #     },
-#     "outDir": "./dist",
 #     "esModuleInterop": true,
 #     "forceConsistentCasingInFileNames": true,
 #     "strict": true,
-#     "skipLibCheck": true,
-#     "ignoreDeprecations": "6.0"
+#     "skipLibCheck": true
 #   },
 #   "include": ["src/**/*"],
 #   "exclude": ["node_modules", "dist"]
