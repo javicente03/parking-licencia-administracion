@@ -62,6 +62,9 @@ model License {
   
   superAdminMail     String?
   superAdminPassword String?
+
+  miniPcMail        String?
+  miniPcPassword    String?
   
   issuedAt           DateTime      @default(now())
   expiresAt          DateTime

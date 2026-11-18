@@ -12,6 +12,8 @@ export interface LicenseJwtPayload {
     hwid: string;
     superAdminMail?: string;
     superAdminPassword?: string;
+    miniPcMail?: string;
+    miniPcPassword?: string;
     expiresAt: string;
 }
 

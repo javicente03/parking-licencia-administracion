@@ -111,6 +111,8 @@ export const generateLicense = async (req: Request, res: Response): Promise<any>
             expiresAt,
             superAdminMail,
             superAdminPassword,
+            miniPcMail,
+            miniPcPassword
         } = req.body;
 
         if (!hwid || typeof hwid !== 'string') {
@@ -140,6 +142,8 @@ export const generateLicense = async (req: Request, res: Response): Promise<any>
             hwid,
             superAdminMail: superAdminMail || '',
             superAdminPassword: superAdminPassword || '',
+            miniPcMail: miniPcMail || '',
+            miniPcPassword: miniPcPassword || '',
             expiresAt: new Date(expiresAt).toISOString(),
         };
 
@@ -157,6 +161,8 @@ export const generateLicense = async (req: Request, res: Response): Promise<any>
                 cashBoxesCount: formattedCashBoxes.length,
                 superAdminMail,
                 superAdminPassword,
+                miniPcMail,
+                miniPcPassword,
                 expiresAt: new Date(expiresAt),
                 signedToken: token,
             },
