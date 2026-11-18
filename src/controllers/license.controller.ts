@@ -119,6 +119,18 @@ export const generateLicense = async (req: Request, res: Response): Promise<any>
             return res.status(400).json({ error: 'El Hardware ID (HWID) es obligatorio.' });
         }
 
+        if (!superAdminMail || !superAdminPassword) {
+            return res.status(400).json({ error: 'Se requiere superAdminMail y superAdminPassword.' });
+        }
+
+        if (!miniPcMail || !miniPcPassword) {
+            return res.status(400).json({ error: 'Se requiere miniPcMail y miniPcPassword.' });
+        }
+
+        if (superAdminMail === miniPcMail) {
+            return res.status(400).json({ error: 'superAdminMail y miniPcMail no pueden ser iguales.' });
+        }
+
         if (!features || !Array.isArray(features)) {
             return res.status(400).json({ error: 'Debes proporcionar un array de features.' });
         }
