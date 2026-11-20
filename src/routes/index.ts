@@ -22,7 +22,7 @@ router.get('/raiz', (req, res) => {
 // RUTAS PÚBLICAS
 // ==========================================
 router.post('/auth/login', rateLimiter(5, 15 * 60), login);
-router.post('/auth/forgot-password', rateLimiter(500, 60 * 60), forgotPassword);
+router.post('/auth/forgot-password', rateLimiter(3, 60 * 60), forgotPassword);
 router.post('/auth/reset-password', rateLimiter(5, 15 * 60), resetPassword);
 
 // ==========================================
