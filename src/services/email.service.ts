@@ -20,6 +20,7 @@ export const sendPasswordResetEmail = async (toEmail: string, resetToken: string
         subject: 'Restablecimiento de Contraseña - Gestor de Licencias',
         html: `
             <div style="font-family: Arial, sans-serif; background-color: #0f172a; color: #f8fafc; padding: 30px; border-radius: 10px; max-width: 500px; margin: 0 auto;">
+                <img src=https://parking-system-m.s3.us-east-1.amazonaws.com/logo.png alt="Logo" style="display: block; margin: 0 auto 20px; width: 100px;">
                 <h2 style="color: #38bdf8; text-align: center;">Recuperación de Contraseña</h2>
                 <p>Has solicitado restablecer tu contraseña de acceso al Panel de Administración de Licencias.</p>
                 <p>Haz clic en el siguiente botón para establecer una nueva contraseña. Este enlace expira en 1 hora:</p>
